@@ -5,7 +5,7 @@ const appWindow = () => {
     width: 600,
     height: 400,
   });
-  instance.loadFile("index.html");
+  instance.loadFile("src/index.html");
   // instance.webContents.openDevTools();
 };
 
