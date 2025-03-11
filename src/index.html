@@ -1,28 +1,34 @@
 <!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script src="../node_modules/xel/xel.js" type="module"></script>
+    <meta name="xel-theme" content="../node_modules/xel/themes/material.css" />
+    <meta name="xel-accent-color" content="gray" />
+    <meta name="xel-icons" content="../node_modules/xel/icons/material.svg" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>onTime</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" type="text/css" href="./styles.css" />
-  <script src="node_modules/xel/xel.js" type="module"></script>
-  <meta name="xel-theme" content="node_modules/xel/themes/material.css">
-  <meta name="xel-accent-color" content="gray">
-  <meta name="xel-icons" content="node_modules/xel/icons/material.svg">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-  <title>onTime</title>
-</head>
-
-<body>
-  <div class="main">
-    <div class="side-bar">
-      <span>Hello Electron !<span>
-        <x-button>
-          <x-label>Add Time</x-label>
-        </x-button>
+  <body>
+    <div class="main">
+      <div class="side-bar">
+        <div class="side-bar-top">
+          <span>Hello Electron !</span>
+          <x-button onclick="callAddItem()">
+            <x-label>Add Time</x-label>
+          </x-button>
+        </div>
+      </div>
+      <div class="contents"></div>
     </div>
-    <div class="contents"></div>
-  </div>
-</body>
-
+  </body>
 </html>
