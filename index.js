@@ -6,6 +6,7 @@ const appWindow = () => {
     height: 400,
   });
   instance.loadFile("index.html");
+  // instance.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {

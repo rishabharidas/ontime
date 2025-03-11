@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
@@ -11,9 +11,14 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-    <title>Electron test+ app</title>
+    <title>onTime</title>
   </head>
   <body>
-    <h1>Hello Electron !</h1>
+    <div class="main">
+      <div class="side-bar">
+        <h2>Hello Electron !</h2>
+      </div>
+      <div class="contents"></div>
+    </div>
   </body>
 </html>
