@@ -13,6 +13,9 @@
   
   .side-bar {
     width: 30%;
+    max-width: 250px;
+    display: flex;
+    justify-content: space-between;
     background-color: grey;
   }
   
