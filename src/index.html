@@ -1,24 +1,25 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <title>onTime</title>
-  </head>
-  <body>
-    <div class="main">
-      <div class="side-bar">
-        <h2>Hello Electron !</h2>
-      </div>
-      <div class="contents"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+  <script src="node_modules/xel/xel.js" type="module"></script>
+  <meta name="xel-theme" content="node_modules/xel/themes/material.css">
+  <meta name="xel-accent-color" content="gray">
+  <meta name="xel-icons" content="node_modules/xel/icons/material.svg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <title>onTime</title>
+</head>
+
+<body>
+  <div class="main">
+    <div class="side-bar">
+      <h2>Hello Electron !</h2>
     </div>
-  </body>
+    <div class="contents"></div>
+  </div>
+</body>
+
 </html>
