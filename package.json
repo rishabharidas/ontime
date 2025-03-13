@@ -13,6 +13,7 @@
     "electron": "^35.0.1"
   },
   "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1",
     "xel": "^0.33.2"
   }
 }
