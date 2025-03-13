@@ -5,4 +5,4 @@
 npm run start
 ```
 
-work in progress
+this repo is WIP
