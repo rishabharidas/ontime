@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="./styles.css" />
     <script src="../node_modules/xel/xel.js" type="module"></script>
-    <script src="index.js" type="module"></script>
+    <script src="./index.js" type="text/javascript"></script>
     <meta
       name="xel-theme"
       content="../node_modules/xel/themes/adwaita-dark.css"
@@ -26,13 +26,26 @@
     <div class="main">
       <div class="side-bar">
         <div class="side-bar-top">
-          <span>Hello Electron !</span>
-          <x-button onclick="callAddItem()">
-            <x-label>Add Time</x-label>
+          <span>onTime</span>
+          <x-button id="addTimeButton" size="small">
+            <x-label>Add Another Time</x-label>
           </x-button>
         </div>
+        <div class="sidebar-main"></div>
       </div>
-      <div class="contents"></div>
+      <div class="contents">
+        <div class="content-menu">
+          <x-label id="menuOption1">option1</x-label>
+          <x-button
+            id="saveTimeData"
+            size="small"
+            class="menu-option-button-right"
+          >
+            <x-label> Save </x-label>
+          </x-button>
+        </div>
+        <x-texteditor class="content-editor"></x-texteditor>
+      </div>
     </div>
   </body>
 </html>
