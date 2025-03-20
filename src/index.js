@@ -1,17 +1,41 @@
+let selectedDate;
 document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("addTimeButton")
     .addEventListener("click", callAddItem);
 
+  document.getElementById("saveTimeData")?.addEventListener("click", saveData);
   createTimeSlots();
 
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
+    events: function (fetchInfo, successCallback, failureCallback) {
+      // Retrieve the saved data from local storage
+      let savedData = localStorage.getItem("savedData");
+      if (savedData) {
+        savedData = JSON.parse(savedData);
+
+        // Convert the saved data to the format expected by FullCalendar
+        const events = savedData.map((data) => ({
+          title: data.content,
+          start: `${data.date}T${data.time.split(" - ")[0]}`,
+          end: `${data.date}T${data.time.split(" - ")[1]}`,
+        }));
+
+        successCallback(events);
+      } else {
+        successCallback([]);
+      }
+    },
     initialView: "dayGridMonth",
     height: 350,
     width: 200,
     editable: false,
     selectable: true,
+    dateClick: function (selectInfo) {
+      // Handle date selection event
+      selectedDate = selectInfo.startStr;
+    },
     customButtons: {
       prevButton: {
         text: "<",
@@ -84,16 +108,86 @@ function createTimeSlots() {
 
     timeSlot.addEventListener("click", () => {
       console.log(`Selected time slot: ${startTime} - ${endTime}`);
-      // Remove current selection
       document.querySelectorAll(".time-slot").forEach((slot) => {
         slot.classList.remove("selected");
       });
-      // Add selection to clicked slot
       timeSlot.classList.add("selected");
+
+      // Update the selected date and time
+      const selectedTime = `${startTime} - ${endTime}`;
+
+      // Retrieve saved data for the selected date and time slot
+      const savedData = localStorage.getItem("savedData");
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        console.log(selectedDate, parsedData, selectedTime);
+        let date;
+        if (!selectedDate) {
+          const currentDate = new Date();
+          date = currentDate.toISOString().split("T")[0];
+        } else date = selectedDate;
+        const selectedData = parsedData.find(
+          (data) => data.date === date && data.time === selectedTime,
+        );
+        if (selectedData) {
+          document.querySelector(".content-editor").value =
+            selectedData.content;
+        } else {
+          document.querySelector(".content-editor").value = "";
+        }
+      } else {
+        document.querySelector(".content-editor").value = "";
+      }
     });
 
     sidebarMain.appendChild(timeSlot);
   }
+}
+function saveData() {
+  const selectedTimeSlot = document.querySelector(".time-slot.selected");
+  const content = document.querySelector(".content-editor").value;
+
+  let date;
+  let time;
+
+  if (selectedDate) {
+    date = selectedDate;
+  } else {
+    // Use current day if no date is selected
+    const currentDate = new Date();
+    date = currentDate.toISOString().split("T")[0];
+  }
+
+  if (selectedTimeSlot) {
+    time = selectedTimeSlot.textContent.trim();
+  } else {
+    // Use current time slot if no time slot is selected
+    const currentHour = new Date().getHours();
+    const startTime = `${currentHour.toString().padStart(2, "0")}:00`;
+    const endTime = `${(currentHour + 1).toString().padStart(2, "0")}:00`;
+    time = `${startTime} - ${endTime}`;
+  }
+
+  const data = {
+    date: date,
+    time: time,
+    content: content,
+  };
+
+  // Retrieve existing data from local storage
+  let savedData = localStorage.getItem("savedData");
+  if (savedData) {
+    savedData = JSON.parse(savedData);
+  } else {
+    savedData = [];
+  }
+
+  savedData.push(data);
+
+  // Store the updated data in local storage
+  localStorage.setItem("savedData", JSON.stringify(savedData));
+
+  console.log("Data saved:", data);
 }
 
 function updateCurrentTimeSelection() {
