@@ -2,8 +2,8 @@ const { app, BrowserWindow } = require("electron");
 
 const appWindow = () => {
   const instance = new BrowserWindow({
-    width: 600,
-    height: 400,
+    width: 1024,
+    height: 720,
   });
   instance.loadFile("src/index.html");
   // instance.webContents.openDevTools();

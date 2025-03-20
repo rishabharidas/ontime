@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="./styles.css" />
     <script src="../node_modules/xel/xel.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="./index.js" type="text/javascript"></script>
     <meta
       name="xel-theme"
@@ -31,7 +32,10 @@
             <x-label>Add Another Time</x-label>
           </x-button>
         </div>
-        <div class="sidebar-main"></div>
+        <div class="sidebar-main">
+          <div id="calendar"></div>
+          <div class="time-slots"></div>
+        </div>
       </div>
       <div class="contents">
         <div class="content-menu">
